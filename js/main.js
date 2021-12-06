@@ -1,61 +1,3 @@
-function PopUp() {
-	Swal.fire({
-		title: '<p class=hero-heading style="color: #ffffff">Thanks for downloading JaxCore!</p>',
-		html: 'Need more help?',
-		imageUrl: '../img/core.png',
-		imageWidth: 128,
-		imageHeight: 128,
-		background: '#181a1b',
-		showDenyButton: true,
-		confirmButtonColor: '#fe5721',
-		confirmButtonText: 'Read the Wiki',
-		denyButtonColor: '#5865F2',
-		denyButtonText: 'Join our Discord',
-	}).then((result) => {
-		if (result.isConfirmed) {
-			window.open('https://github.com/Jax-Core/JaxCore/wiki', '_blank')
-			Swal.close()
-		} else if (result.isDenied) {
-			window.open('https://discord.gg/JmgehPSDD6', '_blank')
-			Swal.close()
-		}
-	})
-}
-
-function downloadLatestCore() {
-	let dnld = () =>
-		fetch('https://api.github.com/repos/Jax-Core/-JaxCore/releases/latest')
-			.then((response) => response.json())
-			.then((data) => {
-				data.assets.forEach((asset) => {
-					if (asset.browser_download_url.indexOf('.rmskin') != -1) {
-						window.location.href = asset.browser_download_url
-					}
-				})
-			})
-	if (navigator.userAgent.indexOf('Win') != -1) {
-		dnld()
-		PopUp()
-	} else {
-		Swal.fire({
-			title: '<p style="color: #facea8">Incompatible Device</p>',
-			html: 'JaxCore is intended for Windows devices. Download anyway?',
-			icon: 'warning',
-			imageWidth: 128,
-			imageHeight: 128,
-			background: '#181a1b',
-			showDenyButton: true,
-			confirmButtonText: 'Download',
-			denyButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				dnld()
-				Swal.close()
-			}
-		})
-	}
-}
-
 document.addEventListener('DOMContentLoaded', () => {
 	// hamburger
 	// Get all "navbar-burger" elements
@@ -80,6 +22,31 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		})
 	}
+
+	// Inject faqs
+
+	let faqSection = document.getElementById('faq-section')
+	let faqTemplate = document.getElementById('faq-template')
+
+	var converter = new showdown.Converter()
+
+	JSON.parse(faqsData).forEach((faqData) => {
+		let clone = faqTemplate.content.cloneNode(true)
+
+		clone.querySelector('.question h3').textContent = faqData.q
+		clone.querySelector('.answer p').innerHTML = converter.makeHtml(
+			faqData.a
+		)
+
+		faqSection.appendChild(clone)
+	})
+
+	const faqs = document.querySelectorAll('.faq')
+	faqs.forEach((faq) => {
+		faq.addEventListener('click', () => {
+			faq.classList.toggle('active')
+		})
+	})
 
 	// link buttons
 	const navlogo = document.querySelector('.navbar-item img')
@@ -109,46 +76,8 @@ let navScrollElements = document.querySelectorAll(
 	'.navbar.has-background-transparent'
 )
 
-let scrollFadeElements = document.querySelectorAll('.scroll-fade')
-let heroSectionBack = document.querySelector('#herosectionback')
-
-let heroSection = document.querySelector('#herosection')
-
-scrollFadeElements.forEach((element) => {
-	element.style.opacity = 0
-})
-
-const elementInView = (el, percentageScroll = 100) => {
-	const elementTop =
-		el.getBoundingClientRect().top <=
-		(window.innerHeight || document.documentElement.clientHeight) *
-			(percentageScroll / 100)
-	const elementBottom =
-		el.getBoundingClientRect().bottom >
-		(window.innerHeight || document.documentElement.clientHeight) *
-			(1 - percentageScroll / 100)
-
-	return elementTop && elementBottom
-}
-
-const displayScrollElement = (element) => {
-	element.classList.add('in-view')
-}
-
-const hideScrollElement = (element) => {
-	element.classList.remove('in-view')
-}
-
 const scrollProc = () => {
-	heroSectionBack.style.opacity =
-		0.7 *
-		(heroSection.getBoundingClientRect().bottom /
-			(window.innerHeight || document.documentElement.clientHeight))
-
-	if (
-		heroSection.getBoundingClientRect().bottom <
-		(window.innerHeight || document.documentElement.clientHeight)
-	) {
+	if (document.body.getBoundingClientRect().top < 0) {
 		navScrollElements.forEach((el) => {
 			el.classList.add('scrolled')
 		})
@@ -157,14 +86,6 @@ const scrollProc = () => {
 			el.classList.remove('scrolled')
 		})
 	}
-
-	scrollFadeElements.forEach((el) => {
-		if (elementInView(el, 85)) {
-			displayScrollElement(el)
-		} else {
-			hideScrollElement(el)
-		}
-	})
 }
 
 let throttleTimer = false
@@ -184,31 +105,22 @@ window.addEventListener('scroll', () => {
 	throttle(scrollProc, 50)
 })
 
-var acc = document.getElementsByClassName('accordion')
-var i
+// var acc = document.getElementsByClassName('accordion')
 
-for (i = 0; i < acc.length; i++) {
-	acc[i].addEventListener('click', function () {
-		/* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-		this.classList.toggle('active')
+// for (let i = 0; i < acc.length; i++) {
+// 	acc[i].addEventListener('click', function () {
+// 		/* Toggle between adding and removing the "active" class,
+//     to highlight the button that controls the panel */
+// 		this.classList.toggle('active')
 
-		/* Toggle between hiding and showing the active panel */
-		var panel = this.nextElementSibling
-		if (panel.style.display === 'block') {
-			panel.style.display = 'none'
-		} else {
-			panel.style.display = 'block'
-		}
-	})
-}
-
-const faqs = document.querySelectorAll('.faq')
-
-faqs.forEach((faq) => {
-	faq.addEventListener('click', () => {
-		faq.classList.toggle('active')
-	})
-})
+// 		/* Toggle between hiding and showing the active panel */
+// 		var panel = this.nextElementSibling
+// 		if (panel.style.display === 'block') {
+// 			panel.style.display = 'none'
+// 		} else {
+// 			panel.style.display = 'block'
+// 		}
+// 	})
+// }
 
 //#endregion

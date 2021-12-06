@@ -27,7 +27,7 @@
 		<link rel="stylesheet" href="css/styles.css" />
 		<link rel="icon" href="img/core.png" type="image/png" />
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<title>JaxCore</title>
+		<title>JaxCore - FAQ</title>
 	</head>
 
 	<body class="no-select">
@@ -82,8 +82,19 @@
 							has-background-transparent has-text-white
 							m-1
 						"
+						href="https://jax-core.github.io/skins"
 					>
-						About
+						Skins
+					</a>
+
+					<a
+						class="
+							navbar-item
+							has-background-transparent has-text-white
+							m-1
+						"
+					>
+						FAQ
 					</a>
 
 					<a
@@ -96,59 +107,65 @@
 					>
 						Donate
 					</a>
-
-					<a
-						class="
-							navbar-item
-							has-background-transparent has-text-white
-							m-1
-						"
-						href="https://jax-core.github.io/skins"
-					>
-						Skins
-					</a>
 				</div>
 			</div>
 		</nav>
-		<section>
-			<h2 class="title">FAQ</h2>
-			<div class="faq">
-				<div class="question">
-					<h3>How do I do this and that?</h3>
-					<svg width="15" height="10" viewBox="0 0 42 25">
-						<path
-							d="M3 3L21 21L39 3"
-							stroke="white"
-							stroke-width="7"
-							stroke-linecap="round"
-						/>
-					</svg>
-				</div>
-				<div class="answer">
-					<p>
-						You just need to know how to do this and that. It's not
-						that hard.
-					</p>
-				</div>
-			</div>
-			<div class="faq">
-				<div class="question">
-					<h3>What if I don't know how to do this and that?</h3>
-					<svg width="15" height="10" viewBox="0 0 42 25">
-						<path
-							d="M3 3L21 21L39 3"
-							stroke="white"
-							stroke-width="7"
-							stroke-linecap="round"
-						/>
-					</svg>
-				</div>
-				<div class="answer">
-					<p>Well you just gotta know it</p>
-				</div>
-			</div>
-		</section>
 
+		<div
+			class="section"
+			id="faq-section"
+			style="padding-top: 0; min-height: 100vh; padding-left: 6rem; padding-right: 6rem;"
+		>
+			<div class="hero">
+				<div class="hero-body pb-0 pl-0 pr-0 pt-3">
+					<div class="columns is-mobile is-vcentered pt-1">
+						<div class="column is-narrow">
+							<h2
+								class="title is-size-2 is-size-3-mobile"
+								style="text-shadow: 0 0 3px white"
+							>
+								FAQ
+							</h2>
+						</div>
+						<div class="column">
+							<p
+								style="
+									width: 100%;
+									padding-top: 3px;
+									border-radius: 1.5px;
+									background-color: whitesmoke;
+									box-shadow: 0 0 3px white;
+								"
+							></p>
+						</div>
+					</div>
+				</div>
+				<!-- <h2 class="title" style="text-shadow: 0 0 4px white">FAQ</h2> -->
+			</div>
+			<!-- Faqs will be inserted here -->
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+		<script src="data/faq.js"></script>
 		<script src="js/main.js"></script>
 	</body>
+
+	<template id="faq-template">
+		<div class="faq">
+			<div class="question">
+				<h3></h3>
+				<svg width="15" height="10" viewBox="0 0 42 25">
+					<path
+						d="M3 3L21 21L39 3"
+						stroke="white"
+						stroke-width="7"
+						stroke-linecap="round"
+					/>
+				</svg>
+			</div>
+			<div class="answer">
+				<p></p>
+			</div>
+		</div>
+	</template>
 </html>
