@@ -12,6 +12,10 @@ const faqsData = `[
         "a": "Rainmeter is an open source program made to make creating desktop widgets and app easier. JaxCore runs entirely on Rainmeter, so without it JaxCore cannot be ran."
     },
     {
+        "q": "How do I install / configure / uninstall JaxCore?",
+        "a": "Please read the [JaxCore wiki](https://github.com/Jax-Core/JaxCore/wiki#installation)."
+    },
+    {
         "q": "I've encountered a few bugs and issues, where can I report them?",
         "a": "Join the Core Community Discord server [here](https://discord.gg/JmgehPSDD6), or simply create an issue on the github repo for the module that you're having trouble with!"
     },
