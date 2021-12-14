@@ -189,7 +189,7 @@ section {
     width: 100%;
 	margin-top: 2rem;
 	padding-bottom: 1rem;
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.589);
 	cursor: pointer;
 }
 
@@ -216,7 +216,7 @@ section {
 }
 
 .faq.active .answer {
-	max-height: 300px;
+	max-height: fit-content;
 	animation: fade 500ms ease-in-out;
 }
 
