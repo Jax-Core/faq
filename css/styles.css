@@ -189,7 +189,7 @@ section {
     width: 100%;
 	margin-top: 2rem;
 	padding-bottom: 1rem;
-	border-bottom: 2px solid rgba(255, 255, 255, 0.589);
+	border-bottom: 2px solid rgb(161, 161, 161);
 	cursor: pointer;
 }
 
@@ -200,28 +200,27 @@ section {
 }
 
 .question h3 {
-	font-style: 1.8rem;
+	font-size: 1.2rem;
+    font-weight: 500;
 }
 
 .answer {
 	max-height: 0;
 	overflow: hidden;
-	transition: max-height 1s ease;
 }
 
 .answer p {
     padding-top: 1rem;
 	line-height: 1.6;
-	font-size: 1.4rem;
+	font-size: 1rem;
 }
 
 .faq.active .answer {
 	max-height: fit-content;
-	animation: fade 500ms ease-in-out;
 }
 
 .answer a {
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 500;
     color:rgb(255, 105, 45);
     transition-duration: 200ms;
@@ -232,21 +231,19 @@ section {
 }
 
 svg {
-	transition: transform 400ms ease-in;
+	transition: transform 200ms ease-in;
 }
 
 .faq.active svg {
-	transform: rotate(180deg);
+	transform: rotate(-180deg);
 }
 
 @keyframes fade {
 	from {
 		opacity: 0;
-		transform: translateY(-10px);
 	}
 	to {
 		opacity: 1;
-		transform: translateY(0px);
 	}
 }
 
