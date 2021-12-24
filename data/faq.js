@@ -10,8 +10,8 @@ const faqsData = `[
     },
 
     {
-        "q": "Is JaxCore safe? Does it contain any viruses?",
-        "a": "No. JaxCore is open source, and uses only open source tools. You can get the source code from [GitHub](https://github.com/Jax-Core/JaxCore)."
+        "q": "Is JaxCore safe?",
+        "a": "Yes. JaxCore is open source, and uses only open source tools. You can get the source code from [GitHub](https://github.com/Jax-Core/JaxCore)."
     },
 
     {
